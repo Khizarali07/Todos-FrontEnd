@@ -1,0 +1,125 @@
+@media (min-width:600px){
+#ma {
+    height: 23rem;
+    overflow-y: auto;
+    border: 5px solid yellow;
+}
+.listing {
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 5px solid black;
+    margin: 10px;
+}
+.ts,.da {
+    color: red;
+    font-size: 20px;
+    text-transform: capitalize;
+}
+.ts {
+    width: 250px;
+}
+.da {
+    width: 100px;
+}
+
+#refresh {
+    font-size: 20px;
+    background-color: black;
+    color: blue;
+    padding: 2px;
+    position: relative;
+    left: 85%;
+}
+#count {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 5px;
+}
+
+.combut {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 3px solid black;
+    margin-left: 2px;
+    cursor: pointer;
+}
+.delbut {
+    width:10rem;
+    height: 24px;
+    margin: 5px;
+    border-radius: 10px;
+}
+.delbut:hover {
+    background-color: black;
+    color: red;
+}
+}
+
+
+@media (max-width:599px){
+    #ma {
+        height: 23rem;
+        overflow-y: auto;
+        border: 5px solid yellow;
+    }
+    .listing {
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 5px solid black;
+        margin: 2.5vw;
+    }
+    .ts,.da {
+        color: red;
+        font-size: 20px;
+        text-transform: capitalize;
+    }
+    .ts {
+        width: 250px;
+        margin: 2vw;
+    }
+    .da {
+        width: 100px;
+    }
+    
+    #refresh {
+        font-size: 20px;
+        background-color: black;
+        color: blue;
+        padding: 2px;
+        position: relative;
+        left: 85%;
+    }
+    #count {
+        font-size: 22px;
+        font-weight: 700;
+        margin: 5px;
+    }
+    
+    .combut {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        border: 3px solid black;
+        margin-left: 2px;
+        cursor: pointer;
+    }
+    .delbut {
+        width:4vw;
+        height: 24px;
+        margin: 5px;
+        border-radius: 10px;
+    }
+    .delbut:hover {
+        background-color: black;
+        color: red;
+    }
+    .delimg {
+        width: 2.5vw;
+        height: fit-content
+    }
+    }    

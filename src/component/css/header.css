@@ -1,0 +1,133 @@
+@media (min-width:600px){
+* {
+    padding: 0%;
+    margin: 0%;
+    background-color: skyblue;
+}
+
+#heading {
+    text-align: center;
+    text-decoration-line: underline;
+    margin: 20px;
+}
+
+#form {
+    display: flex;
+    justify-content: space-around;
+}
+#text {
+    width: 20rem;
+    height: 1.3rem;
+    margin: 30px;
+    padding: 7px;
+    border-radius: 15px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+}
+#date {
+    width: fit-content;
+    height: 1.3rem;
+    margin: 30px;
+    padding: 7px;
+    border-radius: 15px; 
+    background-color: black;
+    color: white;
+}
+#add {
+    width: 9rem;
+    height: 2.5rem;
+    margin: 30px;
+    padding: 7px;
+    border-radius: 20px;  
+    background-color: black;
+    color: red;
+}
+#add:hover {
+    color: white;
+}
+
+#links {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+.link {
+    font-size: 20px;
+    text-decoration-line: none;
+    color: blue;
+    margin: 25px;
+}
+.def {
+    color: black;
+    text-decoration: solid 10px underline;
+}
+}
+
+@media (max-width:599px){
+    * {
+        padding: 0%;
+        margin: 0%;
+        background-color: skyblue;
+    }
+    
+    #heading {
+        text-align: center;
+        text-decoration-line: underline;
+        margin: 20px;
+    }
+    
+    #form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    #text {
+        width: 50vw;
+        height: 3vh;
+        margin: 30px;
+        padding: 7px;
+        border-radius: 15px;
+        background-color: black;
+        color: white;
+        font-size: 16px;
+    }
+    #date {
+        width: fit-content;
+        height: 1.3rem;
+        margin: 30px;
+        padding: 7px;
+        border-radius: 15px; 
+        background-color: black;
+        color: white;
+    }
+    #add {
+        width: 9rem;
+        height: 2.5rem;
+        margin: 30px;
+        padding: 7px;
+        border-radius: 20px;  
+        background-color: black;
+        color: red;
+    }
+    #add:hover {
+        color: white;
+    }
+    
+    #links {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+    }
+    .link {
+        font-size: 20px;
+        text-decoration-line: none;
+        color: blue;
+        margin: 25px;
+    }
+    .def {
+        color: black;
+        text-decoration: solid 10px underline;
+    }
+    }
