@@ -1,79 +1,97 @@
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./css/main.css";
 
-export default function completes() {
-  let data;
-  let task = [];
-  let i = 0;
+export default function Completes() {
+  const [tasks, setTasks] = useState([]); // State to store tasks
+  const [loading, setLoading] = useState(true); // Loading state to manage API calls
 
-  (async function fun() {
-    data = await axios.get(
-      "https://todos-backend-production-6961.up.railway.app/completing"
-    );
-    task = data.data;
-
-    let x = document.getElementById("ma");
-    x.innerHTML = "";
-    let button = document.createElement("button");
-    x.appendChild(button);
-    button.innerHTML = "⟳";
-    button.onclick = refresh;
-    button.id = "refresh";
-    let p = document.createElement("p");
-    x.appendChild(p);
-    p.innerHTML = `total task are :${task.length}`;
-    p.id = "count";
-
-    while (i < task.length) {
-      let c1 = document.createElement("div");
-      let c2 = document.createElement("p");
-      let c3 = document.createElement("p");
-      let c4 = document.createElement("button");
-      let c5 = document.createElement("button");
-
-      x.appendChild(c1);
-      c1.appendChild(c4);
-      c1.appendChild(c2);
-      c1.appendChild(c3);
-      c1.appendChild(c5);
-
-      c1.className = "listing";
-      c2.className = "ts";
-      c3.className = "da";
-      c4.className = "combut";
-      c4.onclick = complete;
-      c5.className = "delbut";
-      c5.onclick = deletee;
-      c2.innerHTML = task[i].task;
-      c3.innerHTML = task[i].date;
-      c5.innerHTML = "Delete";
-
-      if (task[i].complete === "complete") {
-        c4.innerHTML = "&#10004;";
-      }
-      i++;
+  // Function to fetch tasks from the server
+  const fetchTasks = async () => {
+    try {
+      const { data } = await axios.get(
+        "https://todos-backend-production-6961.up.railway.app/completing"
+      );
+      setTasks(data); // Update tasks state with fetched data
+    } catch (error) {
+      console.error("Error fetching tasks:", error);
+    } finally {
+      setLoading(false); // Set loading to false once data is fetched
     }
-  })();
+  };
 
-  return <div id="ma"></div>;
-}
+  // Fetch tasks on component mount
+  useEffect(() => {
+    fetchTasks();
+  }, [tasks]);
 
-function complete(evt) {
-  let complete = "complete";
-  let task = evt.target.nextSibling.innerHTML;
-  console.log(task);
-  axios.post("https://todos-backend-production-6961.up.railway.app/complete", {
-    complete,
-    task,
-  });
-}
-function deletee(evtt) {
-  let date = evtt.target.previousSibling.innerHTML;
-  axios.post("https://todos-backend-production-6961.up.railway.app/delete", {
-    date,
-  });
-  completes();
-}
-function refresh() {
-  completes();
+  // Handle task completion
+  const handleComplete = async (taskName) => {
+    try {
+      await axios.post(
+        "https://todos-backend-production-6961.up.railway.app/complete",
+        {
+          complete: "complete",
+          task: taskName,
+        }
+      );
+      fetchTasks(); // Refresh tasks after completing
+    } catch (error) {
+      console.error("Error marking task complete:", error);
+    }
+  };
+
+  // Handle task deletion
+  const handleDelete = async (taskDate) => {
+    try {
+      await axios.post(
+        "https://todos-backend-production-6961.up.railway.app/delete",
+        {
+          date: taskDate,
+        }
+      );
+      fetchTasks(); // Refresh tasks after deletion
+    } catch (error) {
+      console.error("Error deleting task:", error);
+    }
+  };
+
+  // Handle refresh manually
+  const handleRefresh = () => {
+    setLoading(true);
+    fetchTasks();
+  };
+
+  if (loading) {
+    return <div>Loading tasks...</div>; // Show loading message until data is loaded
+  }
+
+  return (
+    <div id="ma">
+      <button id="refresh" onClick={handleRefresh}>
+        ⟳
+      </button>
+      <p id="count">Total tasks: {tasks.length}</p>
+
+      {tasks.length === 0 ? (
+        <p>No tasks found.</p>
+      ) : (
+        tasks.map((task, index) => (
+          <div key={index} className="listing">
+            <button
+              className="combut"
+              onClick={() => handleComplete(task.task)}
+            >
+              {task.complete === "complete" ? "✔" : "Mark Complete"}
+            </button>
+            <p className="ts">{task.task}</p>
+            <p className="da">{task.date}</p>
+            <button className="delbut" onClick={() => handleDelete(task.date)}>
+              Delete
+            </button>
+          </div>
+        ))
+      )}
+    </div>
+  );
 }
